@@ -77,6 +77,11 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. In the Observer design pattern, the Subscriber is often defined as an interface to allow flexibility in implementation. However, in this case, we are dealing with a fairly fixed structure where the behavior of a subscriber is straightforward. Therefore, a single model struct is sufficient to represent a subscriber. The trait would only be necessary if we expect different types of subscribers with varied behavior, but currently, one implementation is enough.
+
+2. Using Vec would not be sufficient in this case because we need fast lookups, insertions, and deletions based on unique keys (url). Vec does not provide efficient key-based access and would require iteration to find an element. On the other hand, DashMap provides thread-safe concurrent access with efficient key-based operations, which is very suitable for a notification system that may handle multiple subscribers in a real-time environment.
+
+3. DashMap is used inside a lazy_static! block, which serves as an implementation of the Singleton pattern in Rust. The SUBSCRIBERS variable becomes a globally accessible instance that is initialized only once — which matches the principles of the Singleton design pattern. However, we still need DashMap specifically because it provides thread-safe concurrent access, which the Singleton pattern alone does not guarantee. In summary, DashMap and the Singleton pattern serve different but complementary purposes and both are needed to ensure safety and global accessibility in this context.
 
 #### Reflection Publisher-2
 
