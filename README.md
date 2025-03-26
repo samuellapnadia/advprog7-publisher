@@ -91,3 +91,8 @@ This is the place for you to write reflections:
 3. Yes, I've explored Postman and found it to be a really helpful tool for testing HTTP endpoints quickly and effectively. In this project (based on the given example), I used Postman to test the new subscribe feature of the Notification system. Some features I want to explore more are collections, JSON body formatting, as well as status and time tracking.
 
 #### Reflection Publisher-3
+1. In this tutorial, we use the Push model of the Observer Pattern. The publisher (ProductService) sends notification data directly to all subscribers via an HTTP POST request. The subscribers don't ask or request for updates—they simply receive data when the publisher decides to send it.
+
+2. If we used the Pull model, each subscriber would regularly check (poll) the publisher for updates, instead of receiving them directly. One of the advantages of it is less load on the publisher since it doesn't need to push updates. Subscribers can also decide when and how often to fetch updates. But the drawbacks of this is that we will need a more complex subscriber logic and increased network traffic will occur from constant polling, especially if there are many subscribers.
+
+3. If we removed multithreading, then every subscriber update would block the main server thread. That means, if one subscriber is slow or unresponsive, the entire server would be delayed. Requests to publish or create products would also become much slower and feel laggy.
