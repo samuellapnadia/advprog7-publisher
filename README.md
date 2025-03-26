@@ -84,5 +84,10 @@ This is the place for you to write reflections:
 3. DashMap is used inside a lazy_static! block, which serves as an implementation of the Singleton pattern in Rust. The SUBSCRIBERS variable becomes a globally accessible instance that is initialized only once — which matches the principles of the Singleton design pattern. However, we still need DashMap specifically because it provides thread-safe concurrent access, which the Singleton pattern alone does not guarantee. In summary, DashMap and the Singleton pattern serve different but complementary purposes and both are needed to ensure safety and global accessibility in this context.
 
 #### Reflection Publisher-2
+1. In the traditional MVC pattern, the Model often handles both data access and business logic. However, separating the Service and Repository layers brings better modularity, testability, and maintainability. The Repository is responsible solely for data access—how data is fetched, inserted, or deleted. The Service contains the business logic (how that data should be processed or validated). Keeping these layers separate adheres to the Single Responsibility Principle, making our system easier to debug and extend in the future. If logic lives inside models, they quickly become bloated and hard to manage.
+
+2. If we only rely on the Model layer to handle everything—data access, business logic, and interactions between entities like Program, Subscriber, and Notification—the system will quickly become highly coupled and difficult to maintain. Some consequences include poor separation of concerns, code duplication, and harder testing.
+
+3. Yes, I've explored Postman and found it to be a really helpful tool for testing HTTP endpoints quickly and effectively. In this project (based on the given example), I used Postman to test the new subscribe feature of the Notification system. Some features I want to explore more are collections, JSON body formatting, as well as status and time tracking.
 
 #### Reflection Publisher-3
